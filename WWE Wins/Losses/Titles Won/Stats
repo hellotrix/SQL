@@ -1,0 +1,49 @@
+/* Put your data in here and query it! */
+
+CREATE TABLE superstars (id INTEGER PRIMARY KEY, name TEXT, age INTEGER, wins INTEGER, loses INTEGER, titles INTEGER);
+
+INSERT INTO superstars VALUES (1, "hulk hogan", 69, 326, 136, 6);
+INSERT INTO superstars VALUES (2, "john cena", 45, 988, 254, 17);
+INSERT INTO superstars VALUES (3, "shawn michaels", 57, 462, 177, 4);
+INSERT INTO superstars VALUES (4, "bret hart", 65, 288, 121, 32);
+INSERT INTO superstars VALUES (5, "stone cold steve austin", 58, 328, 170, 6);
+INSERT INTO superstars VALUES (6, "ric flair", 74, 411, 339, 16);
+INSERT INTO superstars VALUES (7, "roman reigns", 37, 788, 321, 6);
+INSERT INTO superstars VALUES (8, "triple h", 53, 470, 395, 14);
+INSERT INTO superstars VALUES (9, "undertaker", 58, 744, 233, 7);
+INSERT INTO superstars VALUES (10, "randy orton", 43, 765, 542, 20);
+
+Select * FROM superstars;
+
+Select max(age), name from superstars;
+
+Select min(age), name from superstars;
+
+Select avg(age), name from superstars;
+
+select sum(age), name from superstars;
+
+select name, titles from superstars where 
+    titles > 10;
+    
+select name, wins, loses, titles from superstars where
+    (wins > 500
+    or loses < 300
+    and titles > 15 );
+
+Select COUNT(*),
+
+  CASE 
+
+  WHEN wins > 800 THEN "BEST"
+
+  WHEN wins > 600 THEN "GREAT"
+
+  WHEN wins > 400 THEN "GOOD"
+
+  ELSE "OKAY"
+
+  END as "RATING" FROM superstars
+
+  GROUP BY "RATING";
+    
