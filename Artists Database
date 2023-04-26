@@ -1,0 +1,72 @@
+CREATE TABLE singers (id INTEGER PRIMARY KEY, name TEXT, genre TEXT, year_active INTEGER, albums INTEGER);
+
+INSERT INTO singers VALUES (1, "Taylor Swift", "pop", 2004, 10);
+INSERT INTO singers VALUES (2, "Justin Bieber", "pop", 2007, 6);
+INSERT INTO singers VALUES (3, "Beyonce", "rb", 1997, 7);
+INSERT INTO singers VALUES (4, "Lady Gaga", "pop", 2001, 7);
+INSERT INTO singers VALUES (5, "Ariana Grande", "pop", 2008, 6);
+INSERT INTO singers VALUES (6, "Ed Sheeran", "pop", 2004, 5);
+INSERT INTO singers VALUES (7, "Rihanna", "rb", 2003, 8);
+INSERT INTO singers VALUES (8, "Miley Cyrus", "pop_punk", 2001, 8); 
+INSERT INTO singers VALUES (9, "Katy Perry", "pop", 2001, 6);
+INSERT INTO singers VALUES (10, "Shawn Mendes", "pop", 2013, 4);
+INSERT INTO singers VALUES (11, "Bruno Mars", "rb", 2004, 3);
+
+
+CREATE TABLE songs (id INTEGER PRIMARY KEY, artist_id INTEGER, title TEXT, genre TEXT, year_released INTEGER);
+
+INSERT INTO songs VALUES (1, 2, "Yummy", "pop", 2020);
+INSERT INTO songs VALUES (2, 9, "The One That Got Away", "pop", 2010);
+INSERT INTO songs VALUES (3, 6, "Lego House", "acoustic", 2011);
+INSERT INTO songs VALUES (4, 5, "God Is A Woman", "pop", 2018);
+INSERT INTO songs VALUES (5, 7, "Love On The Brain", "rb", 2016);
+INSERT INTO songs VALUES (6, 10, "Monster", "pop", 2020);
+INSERT INTO songs VALUES (7, 4, "Million Reasons", "ballad", 2016);
+INSERT INTO songs VALUES (8, 1, "Love Story", "country", 2008);
+INSERT INTO songs VALUES (9, 3, "Halo", "ballad", 2008);
+INSERT INTO songs VALUES (10, 11, "Skate", "rb", 2021);
+INSERT INTO songs VALUES (11, 2, "Habitual", "pop", 2020);
+INSERT INTO songs VALUES (12, 9, "Firework", "pop", 2010);
+INSERT INTO songs VALUES (13, 6, "Perfect", "pop", 2017);
+INSERT INTO songs VALUES (14, 5, "Greedy", "pop", 2016);
+INSERT INTO songs VALUES (15, 8 , "Climb", "ballad", 2009);
+
+SELECT * FROM singers;
+
+SELECT name, genre FROM singers;
+
+SELECT name FROM singers
+WHERE genre = "pop";
+
+SELECT name, year_active FROM singers
+GROUP BY year_active;
+
+SELECT name, albums FROM singers
+GROUP BY albums;
+
+SELECT name, albums FROM singers
+WHERE albums > 5
+and genre = "pop"
+and year_active > 2005;
+
+SELECT singers.name, songs.title
+FROM singers
+JOIN songs
+ON singers.id=songs.artist_id;
+
+SELECT title FROM songs
+where genre IN (SELECT name FROM singers WHERE genre = "pop");
+
+
+SELECT * FROM singers;
+
+SELECT COUNT (*),
+CASE
+WHEN year_active >2000 THEN "1990's"
+WHEN year_active >2010 THEN "2000's"
+WHEN year_active >2020 THEN "2010's"
+END AS "debut" FROM singers
+GROUP BY "debut";
+
+
+
